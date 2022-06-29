@@ -1,6 +1,6 @@
 <template>
     <section>
-        <p>Componente de mensagem</p>
+
         <form id="burger-form" @submit="createBurger">
 
             <div class="input-container">
@@ -17,6 +17,14 @@
             </div>
 
             <div class="input-container">
+                <label for="queijo">Escolha o queijo: </label>
+                <select name="queijo" id="queijo" v-model="queijo">
+                    <option value="">Selecione o queijo</option>
+                    <option v-for="queijo in queijos" :key="queijo.id" :value="queijo.tipo">{{ queijo.tipo }}</option>
+                </select>
+            </div>
+
+            <div class="input-container">
                 <label for="carne">Escolha sua carne:</label>
                 <select name="carne" id="carne" v-model="carne">
                     <option value="">Selecione a carne</option>
@@ -28,7 +36,7 @@
                 <label id="opcionais-title" for="Opcionais">Selecione os opcionais:</label>
                 <div class="checkbox-container" v-for="opcional in opcionaisData" :key="opcional.id">
                     <input type="checkbox" name="opcionais" v-model="opcionais" :value="opcional.tipo" />
-                    <span >{{ opcional.tipo }}</span>
+                    <span>{{ opcional.tipo }}</span>
                 </div>
             </div>
 
@@ -36,67 +44,85 @@
                 <input type="submit" class="submit-btn" value="Criar meu burger!" />
             </div>
         </form>
+        <Message v-show="msg" :msg="msg" :nome="pedidoNome" />
+
     </section>
 </template>
 
 <script>
+import Message from "./Message.vue";
+
 export default {
-    name: 'BurgerForm',
+    name: "BurgerForm",
     data() {
         return {
+            nome: null,
             paes: null,
+            queijos: null,
             carnes: null,
             opcionaisData: null,
-            nome: null,
             pao: null,
+            queijo: null,
             carne: null,
             opcionais: [],
-            msg: null
+            msg: null,
+            pedido: null,
+            pedidoNome: null
         }
     },
     methods: {
         async getIngredientes() {
+            const req = await fetch("http://localhost:3000/ingredientes");
 
-            const req = await fetch('http://localhost:3000/ingredientes');
             const data = await req.json();
 
-            
             this.paes = data.paes;
+            this.queijos = data.queijos;
             this.carnes = data.carnes;
             this.opcionaisData = data.opcionais;
         },
-        async createBurger(e){
+        //--------------------------------------------------------
+        async createBurger(e) {
 
             e.preventDefault();
-            
+
             const data = {
                 nome: this.nome,
-                carne: this.carne,
                 pao: this.pao,
+                queijo: this.queijo,
+                carne: this.carne,
                 opcionais: Array.from(this.opcionais),
-                status: 'Solicitado'
+                status: "Solicitado"
             };
 
             const dataJson = JSON.stringify(data);
-            
-            const req = await fetch('http://localhost:3000/burgers', {
-                method: 'POST',
+
+            const req = await fetch("http://localhost:3000/burgers", {
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json'
+                    "Content-Type": "application/json"
                 },
                 body: dataJson
             });
 
             const res = await req.json();
 
-            this.nome = '';
-            this.paes = '';
-            this.carnes = '';
-            this.opcionais = '';
+            this.msg = `Seu pedido Nº ${res.id} foi solicitado com sucesso`;
+            this.pedidoNome = this.nome;
+            setTimeout(() => this.msg = "", 8000);
+
+            this.nome = "";
+            this.paes = "";
+            this.queijos = "";
+            this.carnes = "";
+            this.opcionais = [];
         }
     },
     mounted() {
         this.getIngredientes();
+    },
+    components: {
+        Message
     }
 }
 </script>

@@ -47,6 +47,9 @@ h1 {
   font-size: 42px;
   margin-bottom: 2rem;
   font-weight: bold;
+}
 
+b{
+  font-weight: bold;
 }
 </style>

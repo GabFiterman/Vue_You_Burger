@@ -18,6 +18,32 @@
         "tipo": "Integral"
       }
     ],
+    "queijos": [
+      {
+        "id": 1,
+        "tipo": "-- Sem queijo --"
+      },
+      {
+        "id": 2,
+        "tipo": "Prato"
+      },
+      {
+        "id": 3,
+        "tipo": "Suiço"
+      },
+      {
+        "id": 4,
+        "tipo": "Mussarela"
+      },
+      {
+        "id": 5,
+        "tipo": "Cheddar"
+      },
+      {
+        "id": 6,
+        "tipo": "Requeijão"
+      }
+    ],
     "carnes": [
       {
         "id": 1,
@@ -33,32 +59,48 @@
       },
       {
         "id": 4,
+        "tipo": "Peito de Frango"
+      },
+      {
+        "id": 5,
+        "tipo": "Lombo Suíno"
+      },
+      {
+        "id": 6,
         "tipo": "Veggie burger"
       }
     ],
     "opcionais": [
       {
         "id": 1,
-        "tipo": "Bacon"
+        "tipo": "Dobro de carne"
       },
       {
         "id": 2,
-        "tipo": "Cheddar"
+        "tipo": "Dobro de queijo"
       },
       {
         "id": 3,
+        "tipo": "Bacon"
+      },
+      {
+        "id": 4,
         "tipo": "Salame"
+      },
+      {
+        "id": 4,
+        "tipo": "Ovo"
       },
       {
         "id": 4,
         "tipo": "Tomate"
       },
       {
-        "id": 4,
+        "id": 5,
         "tipo": "Cebola roxa"
       },
       {
-        "id": 4,
+        "id": 6,
         "tipo": "Pepino"
       }
     ]
@@ -77,22 +119,5 @@
       "tipo": "Finalizado"
     }
   ],
-  "burgers": [
-    {
-      "id": 1
-    },
-    {
-      "nome": "Ana Karolina",
-      "carne": "Maminha",
-      "pao": "Parmesão e Orégano",
-      "opcionais": [
-        "Bacon",
-        "Salame",
-        "Cebola roxa",
-        "Tomate"
-      ],
-      "status": "Solicitado",
-      "id": 2
-    }
-  ]
+  "burgers": []
 }
