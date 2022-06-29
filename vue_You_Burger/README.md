@@ -1,4 +1,4 @@
-# vue_You_Burger
+# vue_you_burger
 
 This template should help get you started developing with Vue 3 in Vite.
 
