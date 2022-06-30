@@ -119,5 +119,31 @@
       "tipo": "Finalizado"
     }
   ],
-  "burgers": []
+  "burgers": [
+    {
+      "nome": "Gabriel Fiterman",
+      "pao": "3 Queijos",
+      "queijo": "Cheddar",
+      "carne": "Lombo Suíno",
+      "opcionais": [
+        "Bacon",
+        "Dobro de queijo",
+        "Cebola roxa"
+      ],
+      "status": "Solicitado",
+      "id": 1
+    },
+    {
+      "nome": "Jade Fiterman",
+      "pao": "Parmesão e Orégano",
+      "queijo": "Suiço",
+      "carne": "Peito de Frango",
+      "opcionais": [
+        "Ovo",
+        "Cebola roxa"
+      ],
+      "status": "Solicitado",
+      "id": 2
+    }
+  ]
 }

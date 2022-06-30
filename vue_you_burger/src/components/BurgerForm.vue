@@ -95,7 +95,9 @@ export default {
                 status: "Solicitado"
             };
 
+            console.table(data);
             const dataJson = JSON.stringify(data);
+
 
             const req = await fetch("http://localhost:3000/burgers", {
                 method: "POST",
@@ -108,8 +110,8 @@ export default {
             const res = await req.json();
 
             this.msg = `Seu pedido Nº ${res.id} foi solicitado com sucesso`;
-            this.pedidoNome = this.nome;
             setTimeout(() => this.msg = "", 8000);
+            this.pedidoNome = this.nome;
 
             this.nome = "";
             this.paes = "";
