@@ -130,7 +130,7 @@
         "Dobro de queijo",
         "Cebola roxa"
       ],
-      "status": "Solicitado",
+      "status": "Em produção",
       "id": 1
     },
     {
@@ -144,6 +144,20 @@
       ],
       "status": "Solicitado",
       "id": 2
+    },
+    {
+      "nome": "Gizelly",
+      "pao": "Parmesão e Orégano",
+      "queijo": "Prato",
+      "carne": "Picanha",
+      "opcionais": [
+        "Dobro de carne",
+        "Bacon",
+        "Salame",
+        "Ovo"
+      ],
+      "status": "Solicitado",
+      "id": 3
     }
   ]
 }

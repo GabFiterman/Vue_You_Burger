@@ -1,6 +1,6 @@
 <template>
     <div class="message-container">
-        <h2><b>{{ nome }}</b>, obrigado pelo pedido</h2>
+        <h2 v-show="nome"><b>{{ nome }}</b>, obrigado pelo pedido</h2>
         <p>{{ msg }}</p>
     </div>
 </template>

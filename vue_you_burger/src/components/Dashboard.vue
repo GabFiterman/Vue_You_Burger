@@ -1,6 +1,7 @@
 <template>
     <div id="burger-table" v-if="burgers">
         <div>
+            <Message v-show="msg" :msg="msg"/>
             <div id="burger-table-heading">
                 <div class="order-id">#:</div>
                 <div>Cliente:</div>
@@ -38,40 +39,39 @@
 </template>
 
 <script>
+import Message from './Message.vue';
 export default {
     name: "Dashboard",
     data() {
         return {
             burgers: null,
             burger_id: null,
-            status: []
-        }
+            status: [],
+            msg: null
+        };
     },
     methods: {
         async getPedidos() {
             //de forma assíncrona, acessa a URL da API e guarda na variável req
-            const req = await fetch('http://localhost:3000/burgers');
-
+            const req = await fetch("http://localhost:3000/burgers");
             //em data, guarda a resposta do servidor em formato JSON
-            const data = await req.json()
-
+            const data = await req.json();
             //transfere a data(do servidor) para a data()(do componente Vue)
-            this.burgers = data
-
+            this.burgers = data;
             // invoca a função que Resgata os status de pedidos
-            this.getStatus()
+            this.getStatus();
         },
         async getStatus() {
-            const req = await fetch('http://localhost:3000/status')
-            const data = await req.json()
-            this.status = data
+            const req = await fetch("http://localhost:3000/status");
+            const data = await req.json();
+            this.status = data;
         },
         async deleteBurger(id) {
             const req = await fetch(`http://localhost:3000/burgers/${id}`, {
                 method: "DELETE"
             });
-            const res = await req.json()
-            this.getPedidos()
+            const res = await req.json();
+            this.getPedidos();
         },
         async updateBurger(event, id) {
             const option = event.target.value;
@@ -81,14 +81,19 @@ export default {
                 headers: { "Content-Type": "application/json" },
                 body: dataJson
             });
-            const res = await req.json()
-            console.log(res)
+            const res = await req.json();
+
+            this.msg = `O pedido Nº ${res.id} foi atualizado para ${res.status}!`;
+            setTimeout(() => this.msg = "", 8000);
+
+            console.log(res);
         }
     },
     mounted() {
         //assim que o componente for carregado, já invoca diretamente a função
         this.getPedidos();
-    }
+    },
+    components: { Message }
 }
 </script>
 
